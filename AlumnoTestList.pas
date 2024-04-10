@@ -1,5 +1,5 @@
 program AlumnoTestList;
-uses ListaEnlazada;
+uses GenericLinkedList;
 const
   cant = 3;
 type
@@ -13,7 +13,7 @@ type
        fechaNac : fecha;
        promedio : real;
     end;  
-  ListaAlumnos = specialize Lista<alumno>;
+  ListaAlumnos = specialize LinkedList<alumno>;
 
   procedure leerFecha(var f : fecha);
   begin

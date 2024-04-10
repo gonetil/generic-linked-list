@@ -1,10 +1,10 @@
 program test;
-uses ListaEnlazada;
+uses GenericLinkedList;
 const
   steps = 6;
 type
   
-  ListaInt = specialize Lista<integer>;
+  ListaInt = specialize LinkedList<integer>;
   
 function square(num : integer) : integer;
 begin 
@@ -71,6 +71,6 @@ begin
   writeln('El nuevo nodo actual tiene el valor ',l.current());
   writeln('La lista quedo:' );
   printFullList(L);
-  li:= ListaInm.create;
+  
 
 end.

@@ -1,4 +1,4 @@
-unit ListaEnlazada;
+unit GenericLinkedList;
 {$mode objfpc}
 {$modeswitch advancedrecords}
 interface
@@ -7,7 +7,7 @@ uses fgl;
 
 type
 
-  generic Lista<T> = class
+  generic LinkedList<T> = class
    type
     TLista = ^Tnodo;
     TNodo = record
@@ -37,7 +37,7 @@ type
   
 implementation
  
-    constructor Lista.create;
+    constructor LinkedList.create;
 	  begin
 		pri := nil;
 		cur := nil;
@@ -45,36 +45,36 @@ implementation
 		ult := nil;
 	  end;
 	 
-	procedure Lista.reset;
+	procedure LinkedList.reset;
 	begin
 	  cur := pri;
 	  prev := pri;
 	end;
   
-    function Lista.empty : boolean;
+    function LinkedList.empty : boolean;
     begin
       empty := (pri = nil);
     end;
     
-    function Lista.current : T;
+    function LinkedList.current : T;
     begin
       //@WARN will break if list is empty
       current := cur^.datum;   
     end;
     
-    procedure Lista.next;
+    procedure LinkedList.next;
     begin
       prev := cur;
       //@WARN will break if list is empty
       cur := cur^.sig;  
     end;
     
-    function Lista.eol : boolean;
+    function LinkedList.eol : boolean;
     begin
       eol := (cur = nil);
     end;
     
-    function Lista.createNode(datum :T) : Tlista;
+    function LinkedList.createNode(datum :T) : Tlista;
     var
       aux : Tlista;
     begin
@@ -84,7 +84,7 @@ implementation
     end;
     
     
-    procedure Lista.add(datum: T);
+    procedure LinkedList.add(datum: T);
     var
       aux : TLista;
     begin
@@ -97,7 +97,7 @@ implementation
       end;  
     end;
     
-    procedure Lista.addLast(datum : T);
+    procedure LinkedList.addLast(datum : T);
     var
       aux : Tlista;
     begin
@@ -112,7 +112,7 @@ implementation
       ult := aux; 
     end;    
 
-    procedure Lista.insertCurrent(datum : T);
+    procedure LinkedList.insertCurrent(datum : T);
     var
       aux : Tlista;
     begin
@@ -131,7 +131,7 @@ implementation
     end;
     
     
-    function Lista.removeCurrent : T;
+    function LinkedList.removeCurrent : T;
     var
       datum : T;
     begin
@@ -154,7 +154,7 @@ implementation
     end;
     
     //used to relocate previous and current pointers after last node was removed
-    procedure Lista.relocatePointers;
+    procedure LinkedList.relocatePointers;
     var
       aux : tlista;
     begin
