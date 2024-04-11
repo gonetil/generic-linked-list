@@ -37,6 +37,9 @@ type
   
 implementation
  
+   {* Reset all pointers to nil
+     @FIXME shall we clear all nodes from memory 
+    *} 
     constructor LinkedList.create;
 	  begin
 		pri := nil;
@@ -45,6 +48,9 @@ implementation
 		ult := nil;
 	  end;
 	 
+  {*
+   Set points for current and previous to the first node of the list
+  *} 
 	procedure LinkedList.reset;
 	begin
 	  cur := pri;
@@ -91,10 +97,8 @@ implementation
       aux := createNode(datum);
       aux^.sig := pri;
       pri := aux;
-      if (empty) then begin //empty list
+      if (ult = nil) then //empty list
         ult := pri;
-        reset;
-      end;  
     end;
     
     procedure LinkedList.addLast(datum : T);
