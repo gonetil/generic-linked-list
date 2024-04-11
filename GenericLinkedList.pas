@@ -18,7 +18,7 @@ type
 
     pri, ult, cur, prev : TLista;
     
-    function createNode(datum :T) : Tlista;
+    procedure createNode(datum :T; var node : Tlista);
     function empty : boolean;
     procedure relocatePointers;
 
@@ -26,12 +26,12 @@ type
     constructor create;
     procedure reset;
     function eol : boolean;
-    function current : T;
+    procedure current (var datum : T);
     procedure next;
     procedure add(datum: T);
     procedure addLast(datum: T);
     procedure insertCurrent(datum: T);
-    function removeCurrent : T;
+    procedure removeCurrent (var datum: T);
 
   end;
   
@@ -62,10 +62,10 @@ implementation
       empty := (pri = nil);
     end;
     
-    function LinkedList.current : T;
+    procedure LinkedList.current(var datum : T);
     begin
       //@WARN will break if list is empty
-      current := cur^.datum;   
+      datum := cur^.datum;   
     end;
     
     procedure LinkedList.next;
@@ -80,13 +80,10 @@ implementation
       eol := (cur = nil);
     end;
     
-    function LinkedList.createNode(datum :T) : Tlista;
-    var
-      aux : Tlista;
+    procedure LinkedList.createNode(datum :T; var node : Tlista);
     begin
-       new(aux);
-       aux^.datum := datum;
-       createNode := aux;
+       new(node);
+       node^.datum := datum;
     end;
     
     
@@ -94,7 +91,7 @@ implementation
     var
       aux : TLista;
     begin
-      aux := createNode(datum);
+      createNode(datum, aux);
       aux^.sig := pri;
       pri := aux;
       if (ult = nil) then //empty list
@@ -105,7 +102,7 @@ implementation
     var
       aux : Tlista;
     begin
-      aux := createNode(datum);
+      createNode(datum, aux);
       aux^.sig := nil;
       
       if (empty) then  begin
@@ -120,7 +117,7 @@ implementation
     var
       aux : Tlista;
     begin
-      aux := createNode(datum);
+      createNode(datum, aux);
       
       if (pri = nil) then begin//empty list
         pri := aux;
@@ -135,9 +132,7 @@ implementation
     end;
     
     
-    function LinkedList.removeCurrent : T;
-    var
-      datum : T;
+    procedure LinkedList.removeCurrent(var datum : T);
     begin
       //@WARN will break if list is empty
       datum := cur^.datum; 
@@ -154,7 +149,6 @@ implementation
           relocatePointers;
       end;
       
-      removeCurrent := datum;
     end;
     
     //used to relocate previous and current pointers after last node was removed

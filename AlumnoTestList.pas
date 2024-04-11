@@ -53,7 +53,7 @@ type
 var
 
    alumnos : ListaAlumnos;
-   alu : alumno;
+   alu, actual : alumno;
    i : integer;
 begin
 
@@ -68,7 +68,8 @@ begin
   alumnos.reset;
   while (not alumnos.eol) do
   begin
-     imprimirAlumno(alumnos.current);
+     alumnos.current(alu);
+     imprimirAlumno(alu);
      alumnos.next;
   end;
 
@@ -77,7 +78,8 @@ begin
   alumnos.reset;
   while (not alumnos.eol) do
   begin
-     actualizarMaximo(alumnos.current, alu);
+     alumnos.current(actual);
+     actualizarMaximo(actual, alu);
      alumnos.next;
   end;
   writeln('El alumno con el mejor promedio es ',alu.apellido,' (',alu.promedio:2:2,')');

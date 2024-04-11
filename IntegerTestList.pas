@@ -13,7 +13,7 @@ end;
 
 procedure printFullList(L : ListaInt);
 var
-  num : integer;
+  num, aux : integer;
 begin
   //vamos a recorrer la lista completa
   l.reset();
@@ -21,7 +21,8 @@ begin
   num := 0;
   while (not l.eol()) do begin
     num := num + 1;
-    writeln('Nodo ',num,' ==> ', l.current());
+    l.current(aux);
+    writeln('Nodo ',num,' ==> ', aux);
     l.next;
   end;
   writeln('******'); writeln;
@@ -31,7 +32,7 @@ end;
 var 
 
   l: ListaInt;
-  i : integer;
+  i, aux : integer;
 begin
   l:= ListaInt.create;
   //ponemos algunos valores en la lista de numeros
@@ -46,8 +47,8 @@ begin
   //volvemos al inicio y avanzamos algunos nodos
   l.reset(); 
   for i:= 1 to steps do l.next();
-
-  writeln('Desde el inicio, avancé ',steps,' nodos. El nodo actual tiene el valor ',l.current());
+  l.current(aux);
+  writeln('Desde el inicio, avancé ',steps,' nodos. El nodo actual tiene el valor ',aux);
   writeln('Agrego el numero ',square(square(steps)),' en la posicion actual');
   l.insertCurrent(square(square(steps)));
 
@@ -56,19 +57,25 @@ begin
   //volvemos al inicio y avanzamos algunos nodos
   l.reset(); 
   for i:= 1 to steps do l.next();
-  writeln('Desde el inicio, avancé ',steps,' nodos. El nodo actual tiene el valor ',l.current());
+  l.current(aux);
+  writeln('Desde el inicio, avancé ',steps,' nodos. El nodo actual tiene el valor ',aux);
   writeln('Elimino los siguientes ',steps DIV 2,' nodos ');
-  for i:= 1 to (steps DIV 2) do
-    writeln('Se elimino el numero ',l.removeCurrent());
+  for i:= 1 to (steps DIV 2) do begin
+    l.removeCurrent(aux);
+    writeln('Se elimino el numero ',aux);
 
+  end;
   writeln('Ahora me salteo un nodo, y elimino el siguiente');
   l.next();
-  i := l.removeCurrent();
+  l.removeCurrent(i);
   writeln('Se elimino el numero ',i);
 
-  writeln('Quedé parado en un nodo que tiene el valor ',l.current());
-  writeln('Borro el nodo actual: ',l.removeCurrent());
-  writeln('El nuevo nodo actual tiene el valor ',l.current());
+  l.current(aux);
+  writeln('Quedé parado en un nodo que tiene el valor ',aux);
+  l.removeCurrent(aux);
+  writeln('Borro el nodo actual: ',aux);
+  l.current(aux);
+  writeln('El nuevo nodo actual tiene el valor ',aux);
   writeln('La lista quedo:' );
   printFullList(L);
   

@@ -31,21 +31,20 @@ type
   end;
 
   //ejemplo de lectura de un alumno desde una funcion
-  function leerAlumno : alumno;
-  var a : alumno;
+  procedure leerAlumno(var a: alumno);
   begin
     writeln('Ingrese el apellido del alumno');
     readln(a.apellido);
     writeln('Ingrese su promedio');
     readln(a.promedio);
     leerFecha(a.fechaNac);
-    leerAlumno := a;
   end;
 
 //ejemplo de lectura de una materia desde un procedure
   procedure leerMateria(var m : materia);
   var
      i,cantAlumnos : integer;
+     a : alumno;
   begin
     writeln('Ingrese el nombre de la materia'); readln(m.nombre);
     writeln('Ingrese el nombre del profesor a cargo'); readln(m.profesor);
@@ -53,8 +52,10 @@ type
 
     //¿no deberíamos modularizar este código?
     m.alumnos := ListaAlumnos.create; 
-    for i:= 1 to cantAlumnos do 
-        m.alumnos.addLast( leerAlumno() );
+    for i:= 1 to cantAlumnos do begin
+      leerAlumno(a);
+      m.alumnos.addLast( a );
+    end;    
   end;
 
 
@@ -87,6 +88,7 @@ type
   procedure imprimirMateria(m : materia);
   var
      num : integer;
+     alu : alumno;
   begin
      writeln('Materia: ',m.nombre);
      writeln('A cargo de: ',m.profesor);
@@ -96,13 +98,15 @@ type
     while (not m.alumnos.eol) do
     begin
         num := num + 1;
-        write(num); write(' - '); imprimirAlumno(m.alumnos.current);
+        m.alumnos.current(alu);
+        write(num); write(' - '); imprimirAlumno(alu);
         m.alumnos.next;
     end;
   end;
 
 var
    materias : ListaMaterias;
+   mat : materia; 
 begin
   //cargo una lista de materias
   materias := ListaMaterias.create;
@@ -110,5 +114,6 @@ begin
 
   //imprimo la primer materia del listado
   materias.reset;
-  imprimirMateria(materias.current)
+  materias.current(mat);
+  imprimirMateria(mat);
 end.
