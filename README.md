@@ -8,9 +8,14 @@ Samples:
 * AlumnoTestList.pas: list of students (record)
 * MateriaTestList.pas: list of lists (Materia holds a list of Alumno)
 
-To run:
+To get the full code:
+`git clone https://github.com/gonetil/generic-linked-list.git`
 
+To run a sample:
 `fpc file.pas`
+
+For example, to run the sample list of integers:
+`fpc IntegerTestList.pas`
 
 Tested under Free Pascal Compiler version 3.2.2.
 
