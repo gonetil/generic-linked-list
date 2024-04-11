@@ -166,6 +166,9 @@ implementation
       while (aux <> nil) and (aux^.sig <> prev) do
         aux := aux^.sig;
       prev := aux;
-      cur := aux^.sig;
+      if (prev <> nil) and (prev^.sig <> nil) then
+        cur := prev^.sig
+      else  //there is only one node in the list
+        cur := prev;  
     end;
 end.
