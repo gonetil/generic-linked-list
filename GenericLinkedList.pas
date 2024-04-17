@@ -121,7 +121,6 @@ implementation
       createNode(datum,aux);
       
       if (pri = nil) then begin//empty list
-        writeln('Inserto el primero');
         pri := aux;
         aux^.sig := nil;
         reset;
