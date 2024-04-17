@@ -118,19 +118,31 @@ implementation
     var
       aux : Tlista;
     begin
-      createNode(datum, aux);
+      createNode(datum,aux);
       
       if (pri = nil) then begin//empty list
+        writeln('Inserto el primero');
         pri := aux;
         aux^.sig := nil;
         reset;
       end else begin
-        prev^.sig := aux;
-        aux^.sig := cur;
-        cur := aux; //set the current to the recently inserted node
-      end;
-      
+         if (cur = pri) then  //inserting at the begining of the list
+         begin
+           pri := aux;
+           pri^.sig := cur;
+           cur := aux;
+           prev := pri;
+          end else
+          begin
+            prev^.sig := aux;
+            aux^.sig := cur;
+            cur := aux; //set the current to the recently inserted node
+          end;
+          if (aux^.sig = nil) then 
+             ult := aux;
+        end;   
     end;
+    
     
     
     procedure LinkedList.removeCurrent(var datum : T);
