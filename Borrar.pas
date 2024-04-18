@@ -49,9 +49,9 @@ begin
   insertOrdered(l, 10);
   insertOrdered(l, 12);
   insertOrdered(l, 8);
-  L.addLast(14);
-  L.add(5);
-  L.add(4);
+  L.add(14);
+  L.addFirst(5);
+  L.addFirst(4);
   insertOrdered(L, 15);
   printFullList(l);
 end.

@@ -28,8 +28,8 @@ type
     function eol : boolean;
     procedure current (var datum : T);
     procedure next;
+    procedure addFirst(datum: T);
     procedure add(datum: T);
-    procedure addLast(datum: T);
     procedure insertCurrent(datum: T);
     procedure removeCurrent (var datum: T);
 
@@ -88,7 +88,7 @@ implementation
     end;
     
     
-    procedure LinkedList.add(datum: T);
+    procedure LinkedList.addFirst(datum: T);
     var
       aux : TLista;
     begin
@@ -99,7 +99,7 @@ implementation
         ult := pri;
     end;
     
-    procedure LinkedList.addLast(datum : T);
+    procedure LinkedList.add(datum : T);
     var
       aux : Tlista;
     begin

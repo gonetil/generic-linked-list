@@ -54,7 +54,7 @@ type
     m.alumnos := ListaAlumnos.create; 
     for i:= 1 to cantAlumnos do begin
       leerAlumno(a);
-      m.alumnos.addLast( a );
+      m.alumnos.add( a );
     end;    
   end;
 
@@ -67,7 +67,7 @@ type
     leerMateria(m);
     while (m.profesor <> 'ZZZ') do 
     begin
-      lista.add(m);
+      lista.addFirst(m);
       leerMateria(m);
     end;
   end;  
