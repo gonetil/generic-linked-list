@@ -39,7 +39,7 @@ begin
   writeln('Armo una lista con algunos numeros ');
 
   for i:= -4 to 5 do
-    l.addLast(square(i));
+    l.add(square(i));
 
   printFullList(L);
 

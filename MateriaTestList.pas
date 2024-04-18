@@ -54,7 +54,7 @@ type
     //¿no deberíamos modularizar este código?
     m.alumnos := ListaAlumnos.create; 
     for i:= 1 to cantAlumnos do 
-        m.alumnos.addLast( leerAlumno() );
+        m.alumnos.add( leerAlumno() );
   end;
 
 

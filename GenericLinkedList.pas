@@ -29,7 +29,7 @@ type
     function current : T;
     procedure next;
     procedure add(datum: T);
-    procedure addLast(datum: T);
+    procedure addFirst(datum: T);
     procedure insertCurrent(datum: T);
     function removeCurrent : T;
 
@@ -90,7 +90,7 @@ implementation
     end;
     
     
-    procedure LinkedList.add(datum: T);
+    procedure LinkedList.addFirst(datum: T);
     var
       aux : TLista;
     begin
@@ -101,7 +101,7 @@ implementation
         ult := pri;
     end;
     
-    procedure LinkedList.addLast(datum : T);
+    procedure LinkedList.add(datum : T);
     var
       aux : Tlista;
     begin

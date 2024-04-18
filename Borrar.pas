@@ -48,8 +48,8 @@ begin
   insertOrdered(l, 10);
   insertOrdered(l, 12);
   insertOrdered(l, 8);
-  L.addLast(15);
-  L.add(5);
+  L.add(15);
+  L.addFirst(5);
   insertOrdered(L,46);
   printFullList(l);
 end.
