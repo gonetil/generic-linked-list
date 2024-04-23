@@ -45,7 +45,10 @@ begin
 
   //volvemos al inicio y avanzamos algunos nodos
   l.reset(); 
-  for i:= 1 to steps do l.next();
+  for i:= 1 to steps do begin
+     l.setCurrent(l.current() * 10);
+     l.next();
+  end;   
 
   writeln('Desde el inicio, avancé ',steps,' nodos. El nodo actual tiene el valor ',l.current());
   writeln('Agrego el numero ',square(square(steps)),' en la posicion actual');
@@ -65,6 +68,7 @@ begin
   l.next();
   i := l.removeCurrent();
   writeln('Se elimino el numero ',i);
+
 
   writeln('Quedé parado en un nodo que tiene el valor ',l.current());
   writeln('Borro el nodo actual: ',l.removeCurrent());
