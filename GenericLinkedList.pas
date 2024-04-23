@@ -27,6 +27,7 @@ type
     procedure reset;
     function eol : boolean;
     procedure current (var datum : T);
+    procedure setCurrent(datum : T);
     procedure next;
     procedure addFirst(datum: T);
     procedure add(datum: T);
@@ -68,6 +69,12 @@ implementation
       datum := cur^.datum;   
     end;
     
+    procedure LinkedList.setCurrent(datum : T);
+    begin
+      //@WARN will break if list is empty
+      cur^.datum := datum;   
+    end;
+
     procedure LinkedList.next;
     begin
       prev := cur;
