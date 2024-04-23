@@ -26,6 +26,7 @@ type
     constructor create;
     procedure reset;
     function eol : boolean;
+    procedure setCurrent(datum : T);
     function current : T;
     procedure next;
     procedure add(datum: T);
@@ -62,6 +63,12 @@ implementation
       empty := (pri = nil);
     end;
     
+    procedure LinkedList.setCurrent(datum : T);
+    begin
+      //@WARN will break if list is empty
+      cur^.datum := datum;   
+    end;
+
     function LinkedList.current : T;
     begin
       //@WARN will break if list is empty
